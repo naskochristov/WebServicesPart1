@@ -15,7 +15,7 @@ import javax.xml.ws.Service;
  * 
  */
 @WebServiceClient(name = "GeoIPService", 
-                  wsdlLocation = "file:/../GeoIPService.wsdl",
+                  wsdlLocation = "file:./GeoIPService.wsdl",
                   targetNamespace = "http://www.webservicex.net/") 
 public class GeoIPService extends Service {
 
@@ -26,11 +26,11 @@ public class GeoIPService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("file:/C:/prj/WS_workshop/SimpleWebServiceClient/GeoIPService.wsdl");
+            url = new URL("file:./GeoIPService.wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(GeoIPService.class.getName())
                 .log(java.util.logging.Level.INFO, 
-                     "Can not initialize the default wsdl from {0}", "file:/C:/prj/WS_workshop/SimpleWebServiceClient/GeoIPService.wsdl");
+                     "Can not initialize the default wsdl from {0}", "file: GeoIPService.wsdl");
         }
         WSDL_LOCATION = url;
     }

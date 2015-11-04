@@ -14,6 +14,8 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
@@ -48,19 +50,15 @@ public final class GeoIPServiceSoap_GeoIPServiceSoap_Client {
       
         GeoIPService ss = new GeoIPService(wsdlURL, SERVICE_NAME);
         GeoIPServiceSoap port = ss.getGeoIPServiceSoap();  
-        
+        JAXBContext ctx = JAXBContext.newInstance(GeoIP.class);
+        Marshaller marshaler = ctx.createMarshaller();
+        marshaler.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         {
         System.out.println("Invoking getGeoIP...");
         java.lang.String _getGeoIP_ipAddress = "194.153.145.104";
         net.webservicex.geoipservice.GeoIP _getGeoIP__return = port.getGeoIP(_getGeoIP_ipAddress);
-        System.out.println("getGeoIP.result=" + _getGeoIP__return);
-
-
-        }
-        {
-        System.out.println("Invoking getGeoIPContext...");
-        net.webservicex.geoipservice.GeoIP _getGeoIPContext__return = port.getGeoIPContext();
-        System.out.println("getGeoIPContext.result=" + _getGeoIPContext__return);
+        marshaler.marshal(_getGeoIP__return, System.out);
+      //  System.out.println("getGeoIP.result=" + _getGeoIP__return);
 
 
         }
