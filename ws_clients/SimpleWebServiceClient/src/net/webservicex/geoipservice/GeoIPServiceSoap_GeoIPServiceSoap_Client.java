@@ -55,7 +55,7 @@ public final class GeoIPServiceSoap_GeoIPServiceSoap_Client {
         marshaler.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         {
         System.out.println("Invoking getGeoIP...");
-        java.lang.String _getGeoIP_ipAddress = "194.153.145.104";
+        java.lang.String _getGeoIP_ipAddress = "<IP Address Here>";
         net.webservicex.geoipservice.GeoIP _getGeoIP__return = port.getGeoIP(_getGeoIP_ipAddress);
         marshaler.marshal(_getGeoIP__return, System.out);
       //  System.out.println("getGeoIP.result=" + _getGeoIP__return);
