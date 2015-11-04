@@ -15,7 +15,7 @@ import javax.xml.ws.Service;
  * 
  */
 @WebServiceClient(name = "GeoIPService", 
-                  wsdlLocation = "file:/C:/prj/WS_workshop/SimpleWebServiceClient/GeoIPService.wsdl",
+                  wsdlLocation = "file:/../GeoIPService.wsdl",
                   targetNamespace = "http://www.webservicex.net/") 
 public class GeoIPService extends Service {
 
