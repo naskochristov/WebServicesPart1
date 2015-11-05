@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.scalefocus.com/UserManagementService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UserManagementService" targetNamespace="http://www.scalefocus.com/UserManagementService/">
+  <wsdl:types>
+    <xsd:schema
+    	targetNamespace="http://www.scalefocus.com/UserManagementService/" xmlns:pref="http://www.scalefocus.com/UserManagementSchema">
+    	<xsd:import schemaLocation="UserManagementSchema.xsd" namespace="http://www.scalefocus.com/UserManagementSchema"></xsd:import>
+    	<xsd:element name="createUserProfileRequest"
+    		type="pref:CreateUserProfileRequest">
+    	</xsd:element>
+    	<xsd:element name="createUserProfileResponse"
+    		type="pref:CreateUserProfileResponse">
+    	</xsd:element>
+    	<xsd:element name="updateUserProfile">
+    		<xsd:complexType>
+    			<xsd:sequence>
+
+    				<xsd:element name="in" type="xsd:string"></xsd:element>
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    	<xsd:element name="updateUserProfileResponse">
+    		<xsd:complexType>
+    			<xsd:sequence>
+
+    				<xsd:element name="out" type="xsd:string"></xsd:element>
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    	<xsd:element name="deleteUserProfile">
+    		<xsd:complexType>
+    			<xsd:sequence>
+
+    				<xsd:element name="in" type="xsd:string"></xsd:element>
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    	<xsd:element name="deleteUserProfileResponse">
+    		<xsd:complexType>
+    			<xsd:sequence>
+
+    				<xsd:element name="out" type="xsd:string"></xsd:element>
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    	<xsd:element name="login">
+    		<xsd:complexType>
+    			<xsd:sequence>
+
+    				<xsd:element name="in" type="xsd:string"></xsd:element>
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    	<xsd:element name="loginResponse">
+    		<xsd:complexType>
+    			<xsd:sequence>
+
+    				<xsd:element name="out" type="xsd:string"></xsd:element>
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    	<xsd:element name="logout">
+    		<xsd:complexType>
+    			<xsd:sequence>
+
+    				<xsd:element name="in" type="xsd:string"></xsd:element>
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    	<xsd:element name="logoutResponse">
+    		<xsd:complexType>
+    			<xsd:sequence>
+
+    				<xsd:element name="out" type="xsd:string"></xsd:element>
+    			</xsd:sequence>
+    		</xsd:complexType>
+    	</xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="createUserProfileRequest">
+    <wsdl:part element="tns:createUserProfileRequest" name="createUserProfileIn"/>
+  </wsdl:message>
+  <wsdl:message name="createUserProfileResponse">
+    <wsdl:part element="tns:createUserProfileResponse" name="createUserProfileOut"/>
+  </wsdl:message>
+  <wsdl:message name="updateUserProfileRequest">
+  	<wsdl:part name="updateUserProfileIn" element="tns:updateUserProfile"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUserProfileResponse">
+  	<wsdl:part name="updateUserProfileOut" element="tns:updateUserProfileResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUserProfileRequest">
+  	<wsdl:part name="deleteUserProfileIn" element="tns:deleteUserProfile"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUserProfileResponse">
+  	<wsdl:part name="deleteUserProfileOut" element="tns:deleteUserProfileResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginRequest">
+  	<wsdl:part name="loginIn" element="tns:login"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="loginResponse">
+  	<wsdl:part name="loginOut" element="tns:loginResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="logoutRequest">
+  	<wsdl:part name="logoutIn" element="tns:logout"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="logoutResponse">
+  	<wsdl:part name="logoutOut" element="tns:logoutResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserManagementService">
+    <wsdl:operation name="createUserProfile">
+      <wsdl:input message="tns:createUserProfileRequest"/>
+      <wsdl:output message="tns:createUserProfileResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateUserProfile">
+    	<wsdl:input message="tns:updateUserProfileRequest"></wsdl:input>
+    	<wsdl:output message="tns:updateUserProfileResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUserProfile">
+    	<wsdl:input message="tns:deleteUserProfileRequest"></wsdl:input>
+    	<wsdl:output message="tns:deleteUserProfileResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="login">
+    	<wsdl:input message="tns:loginRequest"></wsdl:input>
+    	<wsdl:output message="tns:loginResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logout">
+    	<wsdl:input message="tns:logoutRequest"></wsdl:input>
+    	<wsdl:output message="tns:logoutResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserManagementServiceSOAP" type="tns:UserManagementService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createUserProfile">
+      <soap:operation soapAction="http://www.scalefocus.com/UserManagementService/createUserProfile"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserManagementService">
+    <wsdl:port binding="tns:UserManagementServiceSOAP" name="UserManagementServiceSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
