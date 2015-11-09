@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="SayHiModifiedService" targetNamespace="http://tutorial.scalefocus.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://tutorial.scalefocus.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="SayHiModifiedService" targetNamespace="http://tutorial.scalefocus.com" xmlns:ns1="http://trainings.scalefocus.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://tutorial.scalefocus.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
 <xs:schema xmlns:tns="http://tutorial.scalefocus.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://tutorial.scalefocus.com" version="1.0">
+
+  <xs:element name="Greeting" type="tns:GreetingType"/>
 
   <xs:element name="sayHiModifiedOperation" type="tns:sayHiModifiedOperation"/>
 
@@ -9,14 +11,14 @@
 
   <xs:complexType name="sayHiModifiedOperation">
     <xs:sequence>
-      <xs:element minOccurs="0" name="sayHiIn" type="tns:sayHiInput"/>
+      <xs:element minOccurs="0" name="sayHiIn" type="tns:GreetingType"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="sayHiInput">
+  <xs:complexType name="GreetingType">
     <xs:sequence>
-      <xs:element minOccurs="0" name="greeting" type="xs:string"/>
-      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="nameElem" type="xs:string"/>
+      <xs:element minOccurs="0" name="greetingElem" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -27,9 +29,23 @@
   </xs:complexType>
 
 </xs:schema>
+<xsd:schema xmlns:tns="http://trainings.scalefocus.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://trainings.scalefocus.com">
+  <xsd:element name="InvalidGreetingFaultType" type="tns:InvalidGreetingFaultType"/>
+  <xsd:complexType name="InvalidGreetingFaultType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="code" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
   </wsdl:types>
   <wsdl:message name="sayHiModifiedOperationResponse">
     <wsdl:part name="parameters" element="tns:sayHiModifiedOperationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidGreetingFault">
+    <wsdl:part name="InvalidGreetingException" element="ns1:InvalidGreetingFaultType">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="sayHiModifiedOperation">
@@ -42,6 +58,8 @@
     </wsdl:input>
       <wsdl:output name="sayHiModifiedOperationResponse" message="tns:sayHiModifiedOperationResponse">
     </wsdl:output>
+      <wsdl:fault name="InvalidGreetingFault" message="tns:InvalidGreetingFault">
+    </wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SayHiModifiedServiceSoapBinding" type="tns:SayHi">
@@ -54,6 +72,9 @@
       <wsdl:output name="sayHiModifiedOperationResponse">
         <soap:body use="literal"/>
       </wsdl:output>
+      <wsdl:fault name="InvalidGreetingFault">
+        <soap:fault name="InvalidGreetingFault" use="literal"/>
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="SayHiModifiedService">
