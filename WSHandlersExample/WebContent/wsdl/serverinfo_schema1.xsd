@@ -1,0 +1,17 @@
+<xs:schema xmlns:tns="http://tutorials.scalefocus.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://tutorials.scalefocus.com" version="1.0">
+
+  <xs:element name="getServerName" type="tns:getServerName"/>
+
+  <xs:element name="getServerNameResponse" type="tns:getServerNameResponse"/>
+
+  <xs:complexType name="getServerName">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="getServerNameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>

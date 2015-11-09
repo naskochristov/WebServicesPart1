@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SayHiModifiedService" targetNamespace="http://tutorial.scalefocus.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://tutorial.scalefocus.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:tns="http://tutorial.scalefocus.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tutorial.scalefocus.com" version="1.0">
+
+  <xs:element name="Greeting" type="tns:GreetingType"/>
+
+  <xs:complexType name="GreetingType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="nameElem" type="xs:string"/>
+      <xs:element minOccurs="0" name="greetingElem" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sayHiModifiedOperationResponse">
+    <wsdl:part name="sayHiPartOut" type="xsd:string">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHiModifiedOperation">
+    <wsdl:part name="sayHiPartIn" type="tns:GreetingType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SayHi">
+    <wsdl:operation name="sayHiModifiedOperation">
+      <wsdl:input name="sayHiModifiedOperation" message="tns:sayHiModifiedOperation">
+    </wsdl:input>
+      <wsdl:output name="sayHiModifiedOperationResponse" message="tns:sayHiModifiedOperationResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SayHiModifiedServiceSoapBinding" type="tns:SayHi">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHiModifiedOperation">
+      <soap:operation soapAction="sayHiModifiedAction" style="rpc"/>
+      <wsdl:input name="sayHiModifiedOperation">
+        <soap:body use="literal" namespace="http://tutorial.scalefocus.com"/>
+      </wsdl:input>
+      <wsdl:output name="sayHiModifiedOperationResponse">
+        <soap:body use="literal" namespace="http://tutorial.scalefocus.com"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SayHiModifiedService">
+    <wsdl:port name="SayHiModifiedPort" binding="tns:SayHiModifiedServiceSoapBinding">
+      <soap:address location="http://localhost:9090/SayHiModifiedPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
