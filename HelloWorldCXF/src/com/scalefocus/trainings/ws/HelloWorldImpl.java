@@ -19,7 +19,8 @@ import com.scalefocus.trainings.ws.exception.InvalidGreetingException;
 @InInterceptors(interceptors = "org.apache.cxf.interceptor.LoggingInInterceptor")
 @OutInterceptors(interceptors = "org.apache.cxf.interceptor.LoggingOutInterceptor")
 @SOAPBinding(style=Style.DOCUMENT)
-public class HelloWorldImpl {
+public class HelloWorldImpl 
+{
 	
 	@WebMethod(action="sayHiModifiedAction", operationName="sayHiModifiedOperation")
 	@WebResult(partName="sayHiPartOut",name="textOut")
