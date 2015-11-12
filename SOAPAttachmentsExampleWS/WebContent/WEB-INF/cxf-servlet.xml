@@ -3,13 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
 	xmlns:soap="http://cxf.apache.org/bindings/soap"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
-	<jaxws:endpoint xmlns:tns="http://tutorials.scalefocus.com"
-		id="serverinfo" implementor="com.scalefocus.tutorials.ServerInfo"
-		wsdlLocation="wsdl/serverinfo.wsdl" endpointName="tns:ServerInfoPort"
-		serviceName="tns:ServerInfoService" address="/ServerInfoPort">
-		<jaxws:properties>
-			<entry key="mtom-enabled" value="true"/>
-		</jaxws:properties>
+	<jaxws:endpoint xmlns:tns="http://trainings.scalefocus.com"
+		id="uploadfileservice" implementor="com.scalefocus.trainings.UploadFileService"
+		wsdlLocation="wsdl/uploadfileservice.wsdl" endpointName="tns:UploadFileServicePort"
+		serviceName="tns:UploadFile" address="/UploadFileServicePort">
 		<jaxws:features>
 			<bean class="org.apache.cxf.feature.LoggingFeature" />
 		</jaxws:features>

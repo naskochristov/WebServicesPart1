@@ -3,22 +3,13 @@
   <wsdl:types>
 <xs:schema xmlns:tns="http://tutorial.scalefocus.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://tutorial.scalefocus.com" version="1.0">
 
-  <xs:element name="Greeting" type="tns:GreetingType"/>
-
   <xs:element name="sayHiModifiedOperation" type="tns:sayHiModifiedOperation"/>
 
   <xs:element name="sayHiModifiedOperationResponse" type="tns:sayHiModifiedOperationResponse"/>
 
   <xs:complexType name="sayHiModifiedOperation">
     <xs:sequence>
-      <xs:element minOccurs="0" name="arg0" type="tns:GreetingType"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="GreetingType">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="nameElem" type="xs:string"/>
-      <xs:element minOccurs="0" name="greetingElem" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -34,6 +25,7 @@
   <xsd:complexType name="InvalidGreetingFaultType">
     <xsd:sequence>
       <xsd:element minOccurs="0" name="code" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
       <xsd:element minOccurs="0" name="message" type="xsd:string"/>
     </xsd:sequence>
   </xsd:complexType>

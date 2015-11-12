@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name="Greeting")
-@XmlType(name="GreetingType", namespace="http://tutorial.scalefocus.com" , propOrder={"name", "greeting"})
+@XmlType(name="GreetingType", namespace="http://tutorial.scalefocus.com" , propOrder={"name", "greeting"} )
 public class SayHiInput {
 
 	

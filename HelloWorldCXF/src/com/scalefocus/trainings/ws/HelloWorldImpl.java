@@ -24,15 +24,17 @@ public class HelloWorldImpl
 	
 	@WebMethod(action="sayHiModifiedAction", operationName="sayHiModifiedOperation")
 	@WebResult(partName="sayHiPartOut",name="textOut")
-	public String sayHello(@WebParam(partName="sayHiPartIn",name="sayHiIn") SayHiInput input) 
+	public String sayHello(SayHiInput input) 
 			throws InvalidGreetingException 
 	
 	{
 		String greeting = input.getGreeting();
+		String name = input.getName();
 		if(greeting == null || "".equals(greeting) || greeting.startsWith("F"))
 			throw new InvalidGreetingException(999,"Your greeting is not acceptable!!");
 		String result = input.getGreeting() + " " + input.getName() + " , my friend!";
-	//	System.out.println(result);
+		//String result = "Hello" + input + " , my friend!";
+		//	System.out.println(result);
 		return result;
 	}
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="UploadFile" targetNamespace="http://trainings.scalefocus.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://trainings.scalefocus.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:tns="http://trainings.scalefocus.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" elementFormDefault="unqualified" targetNamespace="http://trainings.scalefocus.com" version="1.0">
+
+  <xs:element name="uploadFile" type="tns:uploadFile"/>
+
+  <xs:element name="uploadFileResponse" type="tns:uploadFileResponse"/>
+
+  <xs:complexType name="uploadFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:fileUpload"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="fileUpload">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="fileData" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+      <xs:element minOccurs="0" name="fileName" type="xs:string"/>
+      <xs:element minOccurs="0" name="fileType" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="uploadFileResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="uploadFileResponse">
+    <wsdl:part name="parameters" element="tns:uploadFileResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="uploadFile">
+    <wsdl:part name="parameters" element="tns:uploadFile">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UploadFileService">
+    <wsdl:operation name="uploadFile">
+      <wsdl:input name="uploadFile" message="tns:uploadFile">
+    </wsdl:input>
+      <wsdl:output name="uploadFileResponse" message="tns:uploadFileResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UploadFileSoapBinding" type="tns:UploadFileService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="uploadFile">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="uploadFile">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="uploadFileResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UploadFile">
+    <wsdl:port name="UploadFileServicePort" binding="tns:UploadFileSoapBinding">
+      <soap:address location="http://localhost:9090/UploadFileServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

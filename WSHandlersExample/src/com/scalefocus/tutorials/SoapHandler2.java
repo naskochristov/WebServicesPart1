@@ -48,7 +48,7 @@ public class SoapHandler2 implements SOAPHandler<SOAPMessageContext>{
 	
 	  	//continue other handler chain
 		System.out.println("SOAPHandler2 : handleMessage() end");
-		return true;
+		return false;
 	}
 
 	@Override
