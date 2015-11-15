@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<bean id="logInBound" class="org.apache.cxf.interceptor.LoggingInInterceptor" />
+	<bean id="logOutBound" class="org.apache.cxf.interceptor.LoggingOutInterceptor" />
+
+	<jaxws:endpoint xmlns:tns="http://tutorial.scalefocus.com"
+		id="sayhello" implementor="com.scalefocus.trainings.wssecurity.SayHelloImpl"
+		wsdlLocation="wsdl/sayhellosecure.wsdl" endpointName="tns:SayHiSecurePort"
+		serviceName="tns:SayHiSecureService" address="/SayHiSecurePort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+		<jaxws:properties>
+			<entry key="exceptionMessageCauseEnabled" value="true" />
+		</jaxws:properties>
+		<jaxws:inInterceptors>
+			<ref bean="logInBound" />
+			<ref bean="inbound-security" />
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<ref bean="logOutBound" />
+			<ref bean="outbound-security" />
+		</jaxws:outInterceptors>
+	</jaxws:endpoint>
+
+	<!-- WSS4JInInterceptor for decrypting and validating the signature of inbound 
+		SOAP -->
+	<bean id="inbound-security" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+		<constructor-arg>
+			<map>
+				<entry key="action" value="Timestamp Signature Encrypt" />
+				<entry key="signaturePropFile" value="server-crypto.properties" />
+				<entry key="decryptionPropFile" value="server-crypto.properties" />
+				<entry key="passwordCallbackClass"
+					value="com.scalefocus.trainings.wssecurity.callback.ServerPasswordCallback" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+	<!-- WSS4JOutInterceptor for signing and encrypting outbound SOAP -->
+	<bean id="outbound-security" class="org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor">
+		<constructor-arg>
+			<map>
+				<entry key="action" value="Timestamp Signature Encrypt" />
+				<entry key="user" value="server" />
+				<entry key="signaturePropFile" value="server-crypto.properties" />
+				<entry key="encryptionPropFile" value="server-crypto.properties" />
+				<entry key="encryptionUser" value="useReqSigCert" />
+				<entry key="passwordCallbackClass"
+					value="com.scalefocus.trainings.wssecurity.callback.ServerPasswordCallback" />
+				<entry key="signatureParts"
+					value="{Element}{http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd}Timestamp;{Element}{http://schemas.xmlsoap.org/soap/envelope/}Body" />
+				<entry key="encryptionParts"
+					value="{Content}{http://schemas.xmlsoap.org/soap/envelope/}Body" />
+				<entry key="encryptionSymAlgorithm" value="http://www.w3.org/2001/04/xmlenc#tripledes-cbc" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+</beans>
