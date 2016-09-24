@@ -32,13 +32,13 @@ public class SoapHandler2 implements SOAPHandler<SOAPMessageContext>{
 	//for response message only, true for outbound messages, false for inbound
 	if(!isResponse){
 		System.out.println("SOAPHandler2 on Request.");
-		try {
+		/*try {
 			context.getMessage().writeTo(System.out);
 			
 		} catch (SOAPException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 	}	
 	else
@@ -48,7 +48,7 @@ public class SoapHandler2 implements SOAPHandler<SOAPMessageContext>{
 	
 	  	//continue other handler chain
 		System.out.println("SOAPHandler2 : handleMessage() end");
-		return false;
+		return true;
 	}
 
 	@Override
