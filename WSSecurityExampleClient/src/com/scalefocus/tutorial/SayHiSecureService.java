@@ -15,7 +15,8 @@ import javax.xml.ws.Service;
  * 
  */
 @WebServiceClient(name = "SayHiSecureService", 
-                  wsdlLocation = "http://localhost:8880/WSSecurityExampleWS/services/SayHiSecurePort?wsdl",
+              //    wsdlLocation = "http://localhost:8180/WSSecurityExampleWS/services/SayHiSecurePort?wsdl",
+				  wsdlLocation = "https://localhost:8143/WSSecurityExampleWS/services/SayHiSecurePort?wsdl",
                   targetNamespace = "http://tutorial.scalefocus.com") 
 public class SayHiSecureService extends Service {
 
@@ -24,13 +25,29 @@ public class SayHiSecureService extends Service {
     public final static QName SERVICE = new QName("http://tutorial.scalefocus.com", "SayHiSecureService");
     public final static QName SayHiSecurePort = new QName("http://tutorial.scalefocus.com", "SayHiSecurePort");
     static {
+
+    	    //for localhost testing only
+    	    javax.net.ssl.HttpsURLConnection.setDefaultHostnameVerifier(
+    	    new javax.net.ssl.HostnameVerifier(){
+
+    	        public boolean verify(String hostname,
+    	                javax.net.ssl.SSLSession sslSession) {
+    	            if (hostname.equals("localhost")) {
+    	                return true;
+    	            }
+    	            return false;
+    	        }
+    	    });
+
         URL url = null;
         try {
-            url = new URL("http://localhost:8880/WSSecurityExampleWS/services/SayHiSecurePort?wsdl");
+           // url = new URL("http://localhost:8180/WSSecurityExampleWS/services/SayHiSecurePort?wsdl");
+        	url = new URL("https://localhost:8143/WSSecurityExampleWS/services/SayHiSecurePort?wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(SayHiSecureService.class.getName())
                 .log(java.util.logging.Level.INFO, 
-                     "Can not initialize the default wsdl from {0}", "http://localhost:8880/WSSecurityExampleWS/services/SayHiSecurePort?wsdl");
+                //     "Can not initialize the default wsdl from {0}", "http://localhost:8180/WSSecurityExampleWS/services/SayHiSecurePort?wsdl");
+                		"Can not initialize the default wsdl from {0}", "https://localhost:8143/WSSecurityExampleWS/services/SayHiSecurePort?wsdl");
         }
         WSDL_LOCATION = url;
     }

@@ -20,7 +20,7 @@ public class ServerPasswordCallback implements CallbackHandler {
 			if (pc.getUsage() == WSPasswordCallback.SIGNATURE || pc.getUsage() == WSPasswordCallback.DECRYPT)
 
 				if (pc.getIdentifier().equals("server"))
-					pc.setPassword("key-pass");
+					pc.setPassword("store-pass");
 
 		}
 	}

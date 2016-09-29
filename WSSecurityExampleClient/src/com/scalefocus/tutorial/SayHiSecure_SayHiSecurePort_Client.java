@@ -20,13 +20,16 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 
+import org.apache.cxf.configuration.jsse.TLSClientParameters;
 import org.apache.cxf.endpoint.Client;
 import org.apache.cxf.endpoint.Endpoint;
 import org.apache.cxf.frontend.ClientProxy;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
+import org.apache.cxf.transport.http.HTTPConduit;
 import org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor;
 import org.apache.cxf.ws.security.wss4j.WSS4JOutInterceptor;
+import org.apache.http.protocol.HTTP;
 import org.apache.wss4j.dom.handler.WSHandlerConstants;
 
 import com.scalefocus.tutorial.callback.ClientPasswordCallback;
@@ -63,6 +66,11 @@ public final class SayHiSecure_SayHiSecurePort_Client {
         SayHiSecure port = ss.getSayHiSecurePort();  
         
         Client client = ClientProxy.getClient(port);
+        HTTPConduit httpConduit = (HTTPConduit) client.getConduit();
+        TLSClientParameters tlsCP = new TLSClientParameters();
+        // other TLS/SSL configuration like setting up TrustManagers
+        tlsCP.setDisableCNCheck(true);
+        httpConduit.setTlsClientParameters(tlsCP);
         Endpoint cxfEndpoint = client.getEndpoint();
         
         LoggingOutInterceptor outLogger = new LoggingOutInterceptor();
