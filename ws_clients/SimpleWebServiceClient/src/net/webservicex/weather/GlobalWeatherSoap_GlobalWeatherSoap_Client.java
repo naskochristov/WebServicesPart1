@@ -50,8 +50,8 @@ public final class GlobalWeatherSoap_GlobalWeatherSoap_Client {
         
         {
         System.out.println("Invoking getWeather...");
-        java.lang.String _getWeather_cityName = "Sofia";
-        java.lang.String _getWeather_countryName = "Bulgaria";
+        java.lang.String _getWeather_cityName = "Rio De Janeiro Aeroporto";
+        java.lang.String _getWeather_countryName = "Brazil";
         java.lang.String _getWeather__return = port.getWeather(_getWeather_cityName, _getWeather_countryName);
         System.out.println("getWeather.result=" + _getWeather__return);
 
@@ -59,7 +59,7 @@ public final class GlobalWeatherSoap_GlobalWeatherSoap_Client {
         }
         {
         System.out.println("Invoking getCitiesByCountry...");
-        java.lang.String _getCitiesByCountry_countryName = "Bulgaria";
+        java.lang.String _getCitiesByCountry_countryName = "Brazil";
         java.lang.String _getCitiesByCountry__return = port.getCitiesByCountry(_getCitiesByCountry_countryName);
         System.out.println("getCitiesByCountry.result=" + _getCitiesByCountry__return);
 

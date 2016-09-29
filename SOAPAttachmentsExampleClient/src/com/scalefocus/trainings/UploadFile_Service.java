@@ -15,7 +15,7 @@ import javax.xml.ws.Service;
  * 
  */
 @WebServiceClient(name = "UploadFile", 
-                  wsdlLocation = "http://localhost:8880/SOAPAttachmentsExampleWS/services/UploadFileServicePort?wsdl",
+                  wsdlLocation = "http://localhost:8180/SOAPAttachmentsExampleWS/services/UploadFileServicePort?wsdl",
                   targetNamespace = "http://trainings.scalefocus.com") 
 public class UploadFile_Service extends Service {
 
@@ -26,11 +26,11 @@ public class UploadFile_Service extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("http://localhost:8880/SOAPAttachmentsExampleWS/services/UploadFileServicePort?wsdl");
+            url = new URL("http://localhost:8180/SOAPAttachmentsExampleWS/services/UploadFileServicePort?wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(UploadFile_Service.class.getName())
                 .log(java.util.logging.Level.INFO, 
-                     "Can not initialize the default wsdl from {0}", "http://localhost:8880/SOAPAttachmentsExampleWS/services/UploadFileServicePort?wsdl");
+                     "Can not initialize the default wsdl from {0}", "http://localhost:8180/SOAPAttachmentsExampleWS/services/UploadFileServicePort?wsdl");
         }
         WSDL_LOCATION = url;
     }

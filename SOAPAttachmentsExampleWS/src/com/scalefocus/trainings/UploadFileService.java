@@ -20,7 +20,7 @@ public class UploadFileService {
 		DataHandler handler = file.getFileData();
 		try {
 			InputStream is = handler.getInputStream();
-			OutputStream os = new FileOutputStream(new File("C:/uploads/output/" + file.getFileName() + "." + file.getFileType()));
+			OutputStream os = new FileOutputStream(new File("C:/upload/target/" + file.getFileName() + "." + file.getFileType()));
 			
 			byte[] b = new byte[5000];
 			int bytesRead=is.read(b);

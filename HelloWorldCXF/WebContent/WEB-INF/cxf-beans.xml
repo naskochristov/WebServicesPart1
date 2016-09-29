@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	<jaxws:endpoint xmlns:tns="http://tutorial.scalefocus.com"
+		id="helloworld" implementor="com.scalefocus.trainings.ws.HelloWorldImpl"
+		wsdlLocation="wsdl/helloworldimpl.wsdl" endpointName="tns:SayHiModifiedPort"
+		serviceName="tns:SayHiModifiedService" address="/SayHiModifiedPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+</beans>

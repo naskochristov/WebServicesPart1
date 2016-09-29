@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="HelloWorldImplService" targetNamespace="blahblah" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="blahblah" xmlns:ns1="http://trainings.scalefocus.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:ns1="blahblah" xmlns:tns="http://tutorial.scalefocus.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tutorial.scalefocus.com" version="1.0">
+
+  <xs:import namespace="blahblah"/>
+
+  <xs:element name="sayHello" type="tns:sayHello"/>
+
+  <xs:element name="sayHelloResponse" type="tns:sayHelloResponse"/>
+
+  <xs:complexType name="sayHello">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:GreetingType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GreetingType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="nameElem" type="xs:string"/>
+      <xs:element minOccurs="0" name="greetingElem" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sayHelloResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
+<xs:schema xmlns="blahblah" xmlns:ns1="http://tutorial.scalefocus.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="blahblah">
+  <xs:import namespace="http://tutorial.scalefocus.com"/>
+  <xs:element name="Greeting" type="ns1:GreetingType"/>
+  <xs:element name="sayHello" nillable="true" type="ns1:sayHello"/>
+  <xs:element name="sayHelloResponse" nillable="true" type="ns1:sayHelloResponse"/>
+</xs:schema>
+<xsd:schema xmlns:tns="http://trainings.scalefocus.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://trainings.scalefocus.com">
+  <xsd:element name="InvalidGreetingFaultType" type="tns:InvalidGreetingFaultType"/>
+  <xsd:complexType name="InvalidGreetingFaultType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="code" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="sayHello">
+    <wsdl:part name="parameters" element="tns:sayHello">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part name="parameters" element="tns:sayHelloResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidGreetingFault">
+    <wsdl:part name="InvalidGreetingException" element="ns1:InvalidGreetingFaultType">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorldImpl">
+    <wsdl:operation name="sayHello">
+      <wsdl:input name="sayHello" message="tns:sayHello">
+    </wsdl:input>
+      <wsdl:output name="sayHelloResponse" message="tns:sayHelloResponse">
+    </wsdl:output>
+      <wsdl:fault name="InvalidGreetingFault" message="tns:InvalidGreetingFault">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldImplServiceSoapBinding" type="tns:HelloWorldImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidGreetingFault">
+        <soap:fault name="InvalidGreetingFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorldImplService">
+    <wsdl:port name="HelloWorldImplPort" binding="tns:HelloWorldImplServiceSoapBinding">
+      <soap:address location="http://localhost:9090/HelloWorldImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

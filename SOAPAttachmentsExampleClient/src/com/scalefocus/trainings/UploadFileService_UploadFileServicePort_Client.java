@@ -62,12 +62,12 @@ public final class UploadFileService_UploadFileServicePort_Client {
         System.out.println("Invoking uploadFile...");
         com.scalefocus.trainings.FileUpload fileToUpload = new com.scalefocus.trainings.FileUpload();
       
-        DataSource fileSource = new FileDataSource(new File("C:/uploads/input/handlers_chains.gif"));
+        DataSource fileSource = new FileDataSource(new File("C:/upload/source/laptop_tracking.jpg"));
         DataHandler handler = new DataHandler(fileSource);
         
         fileToUpload.setFileData(handler);
         fileToUpload.setFileName("new_uploaded_file");
-        fileToUpload.setFileType("gif");
+        fileToUpload.setFileType("pdf");
         java.lang.String result = port.uploadFile(fileToUpload);
         System.out.println("uploadFile.result=" + result);
 

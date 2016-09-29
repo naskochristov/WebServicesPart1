@@ -2,12 +2,12 @@
 <jee:handler-chains xmlns:jee="http://java.sun.com/xml/ns/javaee" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <jee:handler-chain>
     <jee:handler>
-      <jee:handler-class>com.scalefocus.tutorials.SoapHandler1</jee:handler-class>
+      <jee:handler-class>com.scalefocus.tutorials.SoapHandler2</jee:handler-class>
     </jee:handler>
   </jee:handler-chain>
   <jee:handler-chain>
     <jee:handler>
-      <jee:handler-class>com.scalefocus.tutorials.SoapHandler2</jee:handler-class>
+      <jee:handler-class>com.scalefocus.tutorials.SoapHandler1</jee:handler-class>
     </jee:handler>
   </jee:handler-chain>  
 </jee:handler-chains>
